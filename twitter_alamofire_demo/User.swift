@@ -7,13 +7,16 @@
 //
 
 import Foundation
+import UIKit
 
 class User {
-    
+    static var current: User?
     var name: String
+    var screenName: String?
+    var avi: UIImage?
     
     init(dictionary: [String: Any]) {
         name = dictionary["name"] as! String
-
+        screenName = dictionary["screen_name"] as? String
     }
 }

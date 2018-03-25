@@ -41,6 +41,7 @@ class APIManager: SessionManager {
                     print("Welcome \(user.name)")
                     
                     // MARK: TODO: set User.current, so that it's persisted
+                    User.current = user
                     
                     success()
                 }
@@ -53,8 +54,13 @@ class APIManager: SessionManager {
     func logout() {
         clearCredentials()
         
-        // TODO: Clear current user by setting it to nil
-
+        // Clear current user by setting it to nil
+         User.current = nil
+        
+        // TODO: 2. Deauthorize OAuth tokens
+        //self.save(credential: nil)
+        
+        // Post logout notification
         NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
     }
 
@@ -78,17 +84,15 @@ class APIManager: SessionManager {
         
     func getHomeTimeLine(completion: @escaping ([Tweet]?, Error?) -> ()) {
 
-        // This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh
+        /* This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh
         // tweets,
         if let data = UserDefaults.standard.object(forKey: "hometimeline_tweets") as? Data {
             let tweetDictionaries = NSKeyedUnarchiver.unarchiveObject(with: data) as! [[String: Any]]
-            let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
-                Tweet(dictionary: dictionary)
-            })
+            let tweets = Tweet.tweets(with: tweetDictionaries)
 
             completion(tweets, nil)
             return
-        }
+        }*/
 
         request(URL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json")!, method: .get)
             .validate()
@@ -109,9 +113,8 @@ class APIManager: SessionManager {
                     UserDefaults.standard.set(data, forKey: "hometimeline_tweets")
                     UserDefaults.standard.synchronize()
 
-                    let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
-                        Tweet(dictionary: dictionary)
-                    })
+                    let tweets = Tweet.tweets(with: tweetDictionaries)
+                    
                     completion(tweets, nil)
                 }
         }

@@ -11,7 +11,6 @@ import UIKit
 class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tweets: [Tweet] = []
-    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -23,14 +22,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
-        APIManager.shared.getHomeTimeLine { (tweets, error) in
-            if let tweets = tweets {
-                self.tweets = tweets
-                self.tableView.reloadData()
-            } else if let error = error {
-                print("Error getting home timeline: " + error.localizedDescription)
-            }
-        }
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(self.pullToRefresh(_:)),
+                          for: .valueChanged)
+        tableView.insertSubview(refresh, at: 0)
+        
+        fetchTweets()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,6 +54,27 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func didTapLogout(_ sender: Any) {
         APIManager.shared.logout()
+    }
+    
+    @objc func  pullToRefresh(_ refresh: UIRefreshControl) {
+        fetchTweets()
+        
+        // Reload the tableView now that there is new data
+        tableView.reloadData()
+        
+        // Tell the refreshControl to stop spinning
+        refresh.endRefreshing()
+    }
+    
+    func fetchTweets() {
+        APIManager.shared.getHomeTimeLine { (tweets, error) in
+            if let tweets = tweets {
+                self.tweets = tweets
+                self.tableView.reloadData()
+            } else if let error = error {
+                print("Error getting home timeline: " + error.localizedDescription)
+            }
+        }
     }
     
     
