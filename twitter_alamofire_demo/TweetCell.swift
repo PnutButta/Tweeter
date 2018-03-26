@@ -29,9 +29,9 @@ class TweetCell: UITableViewCell {
             userName.text = tweet.user.name
             atUser.text = String(format: "@%@", tweet.user.screenName!)
             dateAdded.text = tweet.createdAtString
-            //retweets.text = tweet.retweetCount as! String
-            //favorites.text = tweet.favoriteCount as! String
-            
+            favorites.text = String(format: "%d", tweet.favoriteCount!)
+            retweets.text = String(tweet.retweetCount)
+
         }
     }
     
