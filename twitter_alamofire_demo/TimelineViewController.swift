@@ -18,9 +18,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         
         tableView.dataSource = self
         tableView.delegate = self
-        
+        tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100
         
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(self.pullToRefresh(_:)),
