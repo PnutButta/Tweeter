@@ -119,10 +119,16 @@
                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUh-Eh-IP8">
                                                     <rect key="frame" x="135" y="112" width="30" height="30"/>
                                                     <state key="normal" image="retweet-icon"/>
+                                                    <connections>
+                                                        <action selector="didTapRetweet:" destination="U1g-kw-izy" eventType="touchUpInside" id="EkT-Rj-k8X"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZL-VI-x4H">
                                                     <rect key="frame" x="215" y="111" width="30" height="29"/>
                                                     <state key="normal" image="favor-icon"/>
+                                                    <connections>
+                                                        <action selector="didTapLike:" destination="U1g-kw-izy" eventType="touchUpInside" id="OIc-6Z-tpT"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Pp-6N-QPU">
                                                     <rect key="frame" x="323" y="114" width="30" height="27"/>
@@ -173,8 +179,10 @@
                                         <connections>
                                             <outlet property="atUser" destination="OpV-Li-Lpi" id="ic4-Xg-9Om"/>
                                             <outlet property="dateAdded" destination="K7g-Ah-Man" id="vSq-GI-862"/>
+                                            <outlet property="favBtn" destination="YZL-VI-x4H" id="yev-RU-kX1"/>
                                             <outlet property="favorites" destination="keG-1M-Sal" id="3Ch-sh-JT9"/>
                                             <outlet property="profilePic" destination="W0F-IT-0ae" id="lEF-49-o1w"/>
+                                            <outlet property="retweetBtn" destination="IUh-Eh-IP8" id="Uya-fc-1kQ"/>
                                             <outlet property="retweets" destination="fJG-1V-VA5" id="Wug-xu-AdF"/>
                                             <outlet property="tweetTextLabel" destination="epC-Fs-Q5Z" id="ZLP-IG-Wsf"/>
                                             <outlet property="userName" destination="egv-2s-vU4" id="U4i-bQ-ZYA"/>
