@@ -36,55 +36,45 @@ class TweetCell: UITableViewCell {
 
         }
     }
+    
     @IBAction func didTapLike(_ sender: Any) {
-        if (favBtn.isSelected) {
-            print("fave selected")
-        }
-        if (favBtn.isHighlighted) {
-            print("fave highlighted")
-        }
-        if (favBtn.isFocused) {
-            print("fave focus")
-        }
-        if (!favBtn.isSelected) {
+        if (tweet.favorited == false) {
             APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
                 if let  error = error {
                     print("Error favoriting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
                     print("Successfully favorited the following Tweet: \n\(tweet.text)")
-                    self.favBtn.setBackgroundImage(#imageLiteral(resourceName: "favor-icon-red"), for: .highlighted)
-                    tweet.favorited = true
-                    tweet.favoriteCount = tweet.favoriteCount! + 1
+                    self.favBtn.setImage(#imageLiteral(resourceName: "favor-icon-red"), for: .normal)
+                    self.tweet.favorited = true
+                    self.tweet.favoriteCount = tweet.favoriteCount! + 1
                 }
             }
             refreshData()
-            
         } else {
             APIManager.shared.unfavorite(tweet) { (tweet: Tweet?, error: Error?) in
                 if let  error = error {
                     print("Error unfavoriting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
                     print("Successfully unfavorited the following Tweet: \n\(tweet.text)")
-                    self.favBtn.setBackgroundImage(#imageLiteral(resourceName: "favor-icon"), for: .selected)
-                    tweet.favorited = false
-                    tweet.favoriteCount = tweet.favoriteCount! - 1
+                    self.favBtn.setImage(#imageLiteral(resourceName: "favor-icon"), for: .normal)
+                    self.tweet.favorited = false
+                    self.tweet.favoriteCount = tweet.favoriteCount! - 1
                 }
             }
             refreshData()
         }
-        
     }
     
     @IBAction func didTapRetweet(_ sender: Any) {
-        if (!retweetBtn.isSelected) {
+        if (tweet.retweeted == false) {
             APIManager.shared.retweet(tweet) { (tweet: Tweet?, error: Error?) in
                 if let  error = error {
                     print("Error retweeting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
                     print("Successfully retweeted the following Tweet: \n\(tweet.text)")
-                    self.retweetBtn.setBackgroundImage(#imageLiteral(resourceName: "retweet-icon-green"), for: .selected)
-                    tweet.retweeted = true
-                    tweet.retweetCount = tweet.retweetCount + 1
+                    self.retweetBtn.setImage(#imageLiteral(resourceName: "retweet-icon-green"), for: .normal)
+                    self.tweet.retweeted = true
+                    self.tweet.retweetCount = tweet.retweetCount + 1
                 }
             }
             refreshData()
@@ -95,9 +85,9 @@ class TweetCell: UITableViewCell {
                     print("Error unretweeting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
                     print("Successfully unretweeted the following Tweet: \n\(tweet.text)")
-                    self.retweetBtn.setBackgroundImage(#imageLiteral(resourceName: "retweet-icon"), for: .selected)
-                    tweet.retweeted = false
-                    tweet.retweetCount = tweet.retweetCount - 1
+                    self.retweetBtn.setImage(#imageLiteral(resourceName: "retweet-icon"), for: .normal)
+                    self.tweet.retweeted = false
+                    self.tweet.retweetCount = tweet.retweetCount - 1
                 }
             }
             refreshData()
