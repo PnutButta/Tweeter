@@ -9,7 +9,7 @@ Time spent: **7** hours spent in total
 The following **required** functionality is completed:
 
 - [x] User sees app icon in home screen and styled launch screen. (1pt)
-- [ ] User can sign in using OAuth login flow. (1pt)
+- [x] User can sign in using OAuth login flow. (1pt)
 - [x] User can Logout. (1pt)
 - [x] Create Data Models for User and Tweet. (1pt)
 - [x] User can view last 20 tweets from their home timeline with the user profile picture, username, tweet text, and timestamp. (2pts)
@@ -60,7 +60,7 @@ Time spent: **X** hours spent in total
 
 The following **required** stories are completed:
 
-- [ ] User can tap on a tweet to view it in a detail view, with controls to retweet, favorite, and reply (2pts)
+- [x] User can tap on a tweet to view it in a detail view, with controls to retweet, favorite, and reply (2pts)
 - [ ] User can compose a new tweet by tapping on a compose button. (3pts)
 - [ ] When composing a tweet, user sees a countdown for the number of characters remaining for the tweet (out of 140) (2pt)
 - [ ] User can view their profile in a *profile tab* (3pts)

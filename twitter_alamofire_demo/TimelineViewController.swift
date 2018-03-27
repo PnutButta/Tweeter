@@ -8,13 +8,20 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate {
+    func did(post: Tweet) {
+        tableView.reloadData()
+        // cant go back to timeline after tweet success
+        navigationController?.popToViewController(self, animated: false)
+    }
     
+    var composeView: ComposeViewController = ComposeViewController()
     var tweets: [Tweet] = []
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        composeView.delegate = self
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -29,11 +36,21 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         fetchTweets()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toDetail") {
         let destination = segue.destination as! DetailViewController
-        let cell =  sender as! UITableViewCell
-        if let indexPath = tableView.indexPath(for: cell) {
-            destination.tweet = tweets[indexPath.row]
+            let cell =  sender as! UITableViewCell
+            if let indexPath = tableView.indexPath(for: cell) {
+                destination.tweet = tweets[indexPath.row]
+            }
+        }
+        if (segue.identifier == "toCompose") {
+            let destination = segue.destination as! ComposeViewController
+            
+            if User.current!.aviUrl != nil {
+                destination.aviString = User.current!.aviUrl!
+            }
+            destination.delegate = self
         }
     }
     

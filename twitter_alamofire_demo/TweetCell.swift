@@ -25,7 +25,8 @@ class TweetCell: UITableViewCell {
     var tweet: Tweet! {
         didSet {
             if tweet.user.aviUrl != nil {
-                profilePic.af_setImage(withURL: tweet.user.aviUrl!)
+                let profileURL = URL(string: tweet.user.aviUrl!)
+                profilePic.af_setImage(withURL: profileURL!)
             }
             tweetTextLabel.text = tweet.text
             userName.text = tweet.user.name

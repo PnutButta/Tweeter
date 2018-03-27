@@ -13,11 +13,11 @@ class User {
     static var current: User?
     var name: String
     var screenName: String?
-    var aviUrl: URL?
+    var aviUrl: String?
     
     init(dictionary: [String: Any]) {
         name = dictionary["name"] as! String
         screenName = dictionary["screen_name"] as? String
-        aviUrl = dictionary["profile_image_url_https"] as? URL
+        aviUrl = dictionary["profile_image_url_https"] as? String
     }
 }
