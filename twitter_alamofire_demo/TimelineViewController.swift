@@ -29,6 +29,14 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         fetchTweets()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! DetailViewController
+        let cell =  sender as! UITableViewCell
+        if let indexPath = tableView.indexPath(for: cell) {
+            destination.tweet = tweets[indexPath.row]
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
     }
