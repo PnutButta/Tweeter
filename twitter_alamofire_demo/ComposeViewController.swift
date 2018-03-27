@@ -12,25 +12,45 @@ protocol ComposeViewControllerDelegate : class {
     func did(post: Tweet)
 }
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, UITextViewDelegate {
 
+    @IBOutlet weak var countLabel: UILabel!
     weak var delegate : ComposeViewControllerDelegate?
     var aviString: String?
     @IBOutlet weak var avi: UIImageView!
     @IBOutlet weak var tweetField: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tweetField.delegate = self
         
         if aviString != nil {
             let profileURL = URL(string: aviString!)
             avi.af_setImage(withURL: profileURL!)
         }
         
+        countLabel.text = "140"
         // Do any additional setup after loading the view.
     }
 
     @IBAction func cancelTweet(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        // TODO: Check the proposed new text character count
+        // Allow or disallow the new text
+        // Set the max character limit
+        let characterLimit = 140
+        
+        // Construct what the new text would be if we allowed the user's latest edit
+        let newText = NSString(string: textView.text!).replacingCharacters(in: range, with: text)
+        
+        // TODO: Update Character Count Label
+         countLabel.text =  String(140 - newText.characters.count)
+        
+        // The new text should be allowed? True/False
+        return newText.characters.count < characterLimit
     }
     
     

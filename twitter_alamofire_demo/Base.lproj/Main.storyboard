@@ -269,11 +269,19 @@
                                     <action selector="postTweet:" destination="coY-tm-vSy" eventType="touchUpInside" id="dTN-N7-7wk"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MC8-W9-d5Y">
+                                <rect key="frame" x="88" y="217" width="29" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
                         <outlet property="avi" destination="DhE-Nn-q6r" id="oIh-5N-HGD"/>
+                        <outlet property="countLabel" destination="MC8-W9-d5Y" id="g9b-zh-o8h"/>
                         <outlet property="tweetField" destination="dKh-Oa-U2m" id="ka8-0m-l1g"/>
                     </connections>
                 </viewController>
