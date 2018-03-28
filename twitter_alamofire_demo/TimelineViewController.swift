@@ -52,6 +52,13 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             }
             destination.delegate = self
         }
+    
+         /*if (segue.identifier == "toProfile") {
+             let destination = segue.destination as! ProfileViewController
+            if User.current!.aviUrl != nil {
+                destination.aviString = User.current!.aviUrl!
+            }
+        }*/
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -15,7 +15,7 @@ The following **required** functionality is completed:
 - [x] User can view last 20 tweets from their home timeline with the user profile picture, username, tweet text, and timestamp. (2pts)
 - [x] User can pull to refresh. (1pt)
 - [x] User can tap the retweet and favorite buttons in a tweet cell to retweet and/or favorite a tweet. (2pts)
-- [ ] Using AutoLayout, the Tweet cell should adjust it's layout for iPhone 7, Plus and SE device sizes as well as accommodate device rotation. (1pt)
+- [x] Using AutoLayout, the Tweet cell should adjust it's layout for iPhone 7, Plus and SE device sizes as well as accommodate device rotation. (1pt)
 
 The following **stretch** features are implemented:
 
@@ -61,9 +61,9 @@ Time spent: **X** hours spent in total
 The following **required** stories are completed:
 
 - [x] User can tap on a tweet to view it in a detail view, with controls to retweet, favorite, and reply (2pts)
-- [ ] User can compose a new tweet by tapping on a compose button. (3pts)
-- [ ] When composing a tweet, user sees a countdown for the number of characters remaining for the tweet (out of 140) (2pt)
-- [ ] User can view their profile in a *profile tab* (3pts)
+- [x] User can compose a new tweet by tapping on a compose button. (3pts)
+- [x] When composing a tweet, user sees a countdown for the number of characters remaining for the tweet (out of 140) (2pt)
+- [x] User can view their profile in a *profile tab* (3pts)
 - Contains the user header view: picture and tagline
 - Contains a section with the users basic stats: # tweets, # following, # followers
 
