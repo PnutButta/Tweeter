@@ -1,41 +1,39 @@
 //
-//  TweetCell.swift
+//  DetailViewController.swift
 //  twitter_alamofire_demo
 //
-//  Created by Charles Hieger on 6/18/17.
-//  Copyright © 2017 Charles Hieger. All rights reserved.
+//  Created by Angel Chara'e Mitchell on 3/27/18.
+//  Copyright © 2018 Charles Hieger. All rights reserved.
 //
 
 import UIKit
 import TTTAttributedLabel
-import AlamofireImage
 
-class TweetCell: UITableViewCell {
-    
-    @IBOutlet weak var favBtn: UIButton!
-    @IBOutlet weak var retweetBtn: UIButton!
+class DetailViewController: UIViewController {
+
+    var tweet: Tweet!
     @IBOutlet weak var profilePic: UIImageView!
-    @IBOutlet weak var tweetTextLabel: UILabel!
-    @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var atUser: UILabel!
-    @IBOutlet weak var dateAdded: UILabel!
+    @IBOutlet weak var displayName: UILabel!
+    @IBOutlet weak var atName: UILabel!
+    @IBOutlet weak var tweetContent: UILabel!
     @IBOutlet weak var retweets: TTTAttributedLabel!
     @IBOutlet weak var favorites: TTTAttributedLabel!
+    @IBOutlet weak var favBtn: UIButton!
+    @IBOutlet weak var retweetBtn: UIButton!
     
-    var tweet: Tweet! {
-        didSet {
-            if tweet.user.aviUrl != nil {
-                let profileURL = URL(string: tweet.user.aviUrl!)
-                profilePic.af_setImage(withURL: profileURL!)
-            }
-            tweetTextLabel.text = tweet.text
-            userName.text = tweet.user.name
-            atUser.text = String(format: "@%@", tweet.user.screenName!)
-            dateAdded.text = tweet.createdAtString
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if tweet.user.aviUrl != nil {
+            let profileURL = URL(string: tweet.user.aviUrl!)
+            profilePic.af_setImage(withURL: profileURL!)
+        }
+            tweetContent.text = tweet.text
+            displayName.text = tweet.user.name
+            atName.text = String(format: "@%@", tweet.user.screenName!)
             favorites.text = String(format: "%d", tweet.favoriteCount!)
             retweets.text = String(tweet.retweetCount)
-
-        }
+    
+        // Do any additional setup after loading the view.
     }
     
     @IBAction func didTapLike(_ sender: Any) {
@@ -100,16 +98,21 @@ class TweetCell: UITableViewCell {
         favorites.text = String(format: "%d", tweet.favoriteCount!)
         retweets.text = String(tweet.retweetCount)
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
-    
+    */
+
 }
